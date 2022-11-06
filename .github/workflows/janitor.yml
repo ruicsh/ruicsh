@@ -1,0 +1,18 @@
+name: janitor
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  janitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ruicsh/janitor-action@main
+        with:
+          user: ruicsh
+          operations: workflow-runs
+        env:
+          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+          GIT_USER: ${{ secrets.GIT_USER }}
